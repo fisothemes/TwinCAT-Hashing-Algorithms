@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="F_Hash_Code" Id="{9abd4865-c4c9-43ce-837e-bb252e18f061}" SpecialFunc="None">
+    <Declaration><![CDATA[(* 64-bit hash code generated using MurmurHash3 and FNV1a hashing algoriths. Hash code is different for each runtime to mitigate Hash Flooding. *)
+FUNCTION F_Hash_Code : LWORD
+VAR_INPUT
+	Data : ANY;
+END_VAR
+VAR_STAT
+	nSeed : DWORD := TO_DWORD(F_RAND()*16#4ADFA541);
+	nRuntime_ID : DWORD := F_MurmurHash3(nSeed);
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[F_Hash_Code := nRuntime_ID XOR TO_LWORD(CONCAT(TO_STRING(F_MurmurHash3(Data)), TO_STRING(F_FNV1a(Data))));
+F_Hash_Code := ROR(F_Hash_Code, 3);]]></ST>
+    </Implementation>
+    <LineIds Name="F_Hash_Code">
+      <LineId Id="109" Count="0" />
+      <LineId Id="111" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

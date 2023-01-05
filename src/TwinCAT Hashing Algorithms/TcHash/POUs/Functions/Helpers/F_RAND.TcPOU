@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="F_RAND" Id="{44073528-8af2-4251-a51f-0f280aef8209}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_RAND : LREAL
+VAR
+	fbRand : DRAND;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbRand(Seed := TO_INT(TIME()));
+F_RAND := fbRand.Num;]]></ST>
+    </Implementation>
+    <LineIds Name="F_RAND">
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

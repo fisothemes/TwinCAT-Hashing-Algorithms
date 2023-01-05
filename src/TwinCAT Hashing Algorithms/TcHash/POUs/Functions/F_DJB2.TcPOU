@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="F_DJB2" Id="{1f78f7c6-e43a-487e-a9eb-d2a3567b550c}" SpecialFunc="None">
+    <Declaration><![CDATA[// Generates a 32-bit hash code of the given input using the djb2 algorithm, created by Dan Bernstein. Source: http://www.cse.yorku.ca/~oz/hash.html
+FUNCTION F_DJB2 : DWORD
+VAR_INPUT
+	Data : ANY;
+END_VAR
+VAR
+	i, nSize, nHash : DWORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[nHash := 16#1505; // 32-bit offset basis
+CASE Data.TypeClass OF
+	__SYSTEM.TYPE_CLASS.TYPE_STRING:
+		nSize := Tc2_Utilities.LEN2(Data.pValue)- 1;
+	__SYSTEM.TYPE_CLASS.TYPE_WSTRING:
+		nSize := Tc2_Utilities.WLEN2(Data.pValue)*2-1;
+ELSE
+		nSize := TO_UDINT(Data.diSize) - 1;
+END_CASE
+FOR i := 0 TO nSize DO nHash := nHash * 33 + Data.pValue[i]; END_FOR
+F_DJB2 := nHash;]]></ST>
+    </Implementation>
+    <LineIds Name="F_DJB2">
+      <LineId Id="41" Count="9" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

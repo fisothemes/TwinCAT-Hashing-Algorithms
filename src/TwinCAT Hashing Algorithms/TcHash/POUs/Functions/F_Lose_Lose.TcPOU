@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="F_Lose_Lose" Id="{03f56cbe-ca19-43fc-9926-daee09d25cf5}" SpecialFunc="None">
+    <Declaration><![CDATA[(* Generates a hash code using the Lose-Lose algorithm - a terrible hashing algorithm that is popular with C programmers. Source: http://www.cse.yorku.ca/~oz/hash.html *)
+FUNCTION F_Lose_Lose : DWORD
+VAR_INPUT
+	Data : ANY;
+END_VAR
+VAR
+	i, nSize, nHash : DWORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[nHash := 16#0;
+CASE Data.TypeClass OF
+	__SYSTEM.TYPE_CLASS.TYPE_STRING:
+		nSize := Tc2_Utilities.LEN2(Data.pValue)- 1;
+	__SYSTEM.TYPE_CLASS.TYPE_WSTRING:
+		nSize := Tc2_Utilities.WLEN2(Data.pValue)*2-1;
+ELSE
+		nSize := TO_UDINT(Data.diSize) - 1;
+END_CASE
+FOR i := 0 TO nSize DO nHash := nHash + Data.pValue[i]; END_FOR
+F_Lose_Lose := nHash;]]></ST>
+    </Implementation>
+    <LineIds Name="F_Lose_Lose">
+      <LineId Id="41" Count="9" />
+      <LineId Id="18" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

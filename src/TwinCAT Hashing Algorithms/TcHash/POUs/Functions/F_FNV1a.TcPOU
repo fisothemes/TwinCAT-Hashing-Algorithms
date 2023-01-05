@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="F_FNV1a" Id="{3c64e3d6-c2d3-41d3-a583-f2b094c43f3d}" SpecialFunc="None">
+    <Declaration><![CDATA[(* Generates the hash code of a given value using the FNV-1a 32-bit hash algorithm created by Glenn Fowler, Landon Curt Noll, and Kiem-Phong Vo. Source: http://www.isthe.com/chongo/tech/comp/fnv/ *)
+FUNCTION F_FNV1a : DWORD
+VAR_INPUT
+	Data : ANY;
+END_VAR
+VAR
+	i, nSize, nHash : DWORD;
+END_VAR
+VAR CONSTANT
+	nPrime : DWORD := 16#1000193; // 32-bit FNV Prime
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[nHash := 16#811C9DC5; // 32-bit offset basis
+CASE Data.TypeClass OF
+	__SYSTEM.TYPE_CLASS.TYPE_STRING:
+		nSize := Tc2_Utilities.LEN2(Data.pValue)- 1;
+	__SYSTEM.TYPE_CLASS.TYPE_WSTRING:
+		nSize := Tc2_Utilities.WLEN2(Data.pValue)*2-1;
+ELSE
+		nSize := TO_UDINT(Data.diSize) - 1;
+END_CASE
+FOR i := 0 TO nSize DO nHash :=(nHash XOR Data.pValue[i])*nPrime; END_FOR
+F_FNV1a := nHash;]]></ST>
+    </Implementation>
+    <LineIds Name="F_FNV1a">
+      <LineId Id="83" Count="9" />
+      <LineId Id="25" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

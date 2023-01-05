@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="MAIN" Id="{a56b86f1-1546-4096-a9b1-5b872aab1c71}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM INTERNAL MAIN
+VAR
+	Value 		: DINT  := 123456789;
+	nCRC 		: DWORD := F_CRC32(Value);
+	nFNV 		: DWORD := F_FNV1a(Value);
+	nDJB2 		: DWORD := F_DJB2(Value);
+	nLose_Lose 	: DWORD := F_Lose_Lose(Value);
+	nSDBM 		: DWORD := F_SDBM(Value);
+	nMurmur 	: DWORD := F_MurmurHash3(Value);
+	nHash_Code 	: LWORD := F_Hash_Code(Value);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
