@@ -162,7 +162,7 @@ nDINT_Hash      := F_SDBM(nData); // Output: 912040036
 
 **Signature:**
 ```Pascal
-FUNCTION F_Hash_Code : DWORD
+FUNCTION F_Hash_Code : LWORD
 VAR_INPUT
 	Data : ANY;
 END_VAR
@@ -173,7 +173,7 @@ END_VAR
 sData        : STRING  := '123456789';
 nData        : DINT    := 123456789;
 nSTRING_Hash,
-nDINT_Hash   : DWORD;
+nDINT_Hash   : LWORD;
 ```
 **Implimentation:**
 ```Pascal
