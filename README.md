@@ -29,7 +29,7 @@ nData        : DINT    := 123456789;
 nSTRING_Hash,
 nDINT_Hash   : DWORD;
 ```
-**Implimentation:**
+**Implementation:**
 ```Pascal
 nSTRING_Hash    := F_CRC32(sData); // Output: 3421780262
 nDINT_Hash      := F_CRC32(nData); // Output: 417295518
@@ -53,7 +53,7 @@ nData        : DINT    := 123456789;
 nSTRING_Hash,
 nDINT_Hash   : DWORD;
 ```
-**Implimentation:**
+**Implementation:**
 ```Pascal
 nSTRING_Hash    := F_DJB2(sData); // Output: 902675330
 nDINT_Hash      := F_DJB2(nData); // Output: 2087454537
@@ -77,7 +77,7 @@ nData        : DINT    := 123456789;
 nSTRING_Hash,
 nDINT_Hash   : DWORD;
 ```
-**Implimentation:**
+**Implementation:**
 ```Pascal
 nSTRING_Hash    := F_FNV1a(sData); // Output: 3146166556
 nDINT_Hash      := F_FNV1a(nData); // Output: 1186151337
@@ -101,7 +101,7 @@ nData        : DINT    := 123456789;
 nSTRING_Hash,
 nDINT_Hash   : DWORD;
 ```
-**Implimentation:**
+**Implementation:**
 ```Pascal
 nSTRING_Hash    := F_Lose_Lose(sData); // Output: 477
 nDINT_Hash      := F_Lose_Lose(nData); // Output: 324
@@ -125,7 +125,7 @@ nData        : DINT    := 123456789;
 nSTRING_Hash,
 nDINT_Hash   : DWORD;
 ```
-**Implimentation:**
+**Implementation:**
 ```Pascal
 nSTRING_Hash    := F_MurMurHash3(sData); // Output: 3036607362
 nDINT_Hash      := F_MurMurHash3(nData); // Output: 3206620847
@@ -148,7 +148,7 @@ nData        : DINT    := 123456789;
 nSTRING_Hash,
 nDINT_Hash   : DWORD;
 ```
-**Implimentation:**
+**Implementation:**
 ```Pascal
 nSTRING_Hash    := F_SDBM(sData); // Output: 1755344949
 nDINT_Hash      := F_SDBM(nData); // Output: 912040036
@@ -175,7 +175,7 @@ nData        : DINT    := 123456789;
 nSTRING_Hash,
 nDINT_Hash   : LWORD;
 ```
-**Implimentation:**
+**Implementation:**
 ```Pascal
 nSTRING_Hash    := F_Hash_Code(sData); // Output: See description
 nDINT_Hash      := F_Hash_Code(nData); // Output: See description
